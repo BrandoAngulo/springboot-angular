@@ -13,12 +13,12 @@
   <mat-card class="col-12 sm:col-6">
 
     <mat-card-header>
-      <mat-card-title>{{ hero.alter_ego }}</mat-card-title>
-      <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+      <mat-card-title>{{ hero.apellidos }}</mat-card-title>
+      <mat-card-subtitle>{{ hero.nombres }}</mat-card-subtitle>
     </mat-card-header>
 
 
-    <img [src]="hero | heroImage" [alt]="hero.superhero" mat-card-image  />
+    <img [src]="hero | heroImage" [alt]="hero.nombres" mat-card-image  />
 
   </mat-card>
 
@@ -26,15 +26,14 @@
 
     <mat-card-header>
       <mat-card-title>Información</mat-card-title>
-      <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ hero.nombres }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <mat-list>
-        <mat-list-item>{{ hero.first_appearance }}</mat-list-item>
-        <mat-list-item>{{ hero.characters }}</mat-list-item>
-        <mat-list-item>{{ hero.publisher }}</mat-list-item>
-        <mat-list-item>{{ hero.alter_ego }}</mat-list-item>
+        <mat-list-item>{{ hero.pais }}</mat-list-item>
+        <mat-list-item>{{ hero.cedula}}</mat-list-item>
+        <mat-list-item>{{ hero.apellidos }}</mat-list-item>
       </mat-list>
 
       <button
@@ -52,3 +51,5 @@
 
 
 </div>
+
+

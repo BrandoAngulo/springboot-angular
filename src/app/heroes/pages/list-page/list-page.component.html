@@ -1,11 +1,33 @@
-<h1>Listado de Héroes</h1>
+<h1>Listado de Clientes</h1>
 <mat-divider></mat-divider>
 
 <div class="grid bm-8 pt-2">
-
-  <div *ngFor="let hero of heroes"
-    class="col-12 sm:col-4 md:col-3 xl:col-2">
-    <heroes-hero-card [hero]="hero"></heroes-hero-card>
+  <div class="col-12 sm:col-4 md:col-3 xl:col-2">
+    <table>
+      <thead>
+        <tr>
+          <th class="sm: col-4">nombre</th>
+          <th class="sm: col-4">apellido</th>
+          <th class="sm: col-4">cedula</th>
+          <th class="sm: col-4">pais</th>
+          <th class="sm: col-4">celular</th>
+          <th class="sm: col-4">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hero of heroes">
+        <td class="sm: col-4">{{hero.nombres}}</td>
+        <td class="sm: col-4">{{hero.apellidos}}</td>
+        <td class="sm: col-4">{{hero.cedula}}</td>
+        <td class="sm: col-4">{{hero.pais}}</td>
+        <td class="sm: col-4">{{hero.celular}}</td>
+        <td class="sm: col-4"> <button mat-button mat-raised color="primary" [routerLink]="['/cliente/modificar-cliente', hero.id ]">
+            <mat-icon>edit</mat-icon>
+            Editar
+          </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
 </div>

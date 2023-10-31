@@ -28,7 +28,7 @@ export class HeroPageComponent implements OnInit {
       )
       .subscribe( hero => {
 
-        if ( !hero ) return this.router.navigate([ '/heroes/list' ]);
+        if ( !hero ) return this.router.navigate([ '/cliente/consultar-cliente' ]);
 
         this.hero = hero;
         return;
@@ -36,7 +36,7 @@ export class HeroPageComponent implements OnInit {
   }
 
   goBack():void {
-    this.router.navigateByUrl('heroes/list')
+    this.router.navigateByUrl('cliente/consultar-cliente')
   }
 
 }

@@ -15,32 +15,32 @@ export class HeroesService {
 
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.baseUrl}/heroes`);
+    return this.http.get<Hero[]>(`${this.baseUrl}/cliente/consultar-clientes`);
   }
 
   getHeroById(id: string): Observable<Hero | undefined> {
-    return this.http.get<Hero>(`${this.baseUrl}/heroes/${id}`)
+    return this.http.get<Hero>(`${this.baseUrl}/cliente/consultar-cliente-por-id/${id}`)
       .pipe(
         catchError(error => of(undefined))
       );
   }
 
   getSuggestions(query: string): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.baseUrl}/heroes?q=${query}&_limit=6`);
+    return this.http.get<Hero[]>(`${this.baseUrl}/cliente?q=${query}&_limit=6`);
   }
 
   agregarHero(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(`${this.baseUrl}/heroes`, hero);
+    return this.http.post<Hero>(`${this.baseUrl}/cliente`, hero);
   }
 
   actualizarHero(hero: Hero): Observable<Hero> {
     if (!hero.id) throw Error('Hero id es requerido');
-    return this.http.post<Hero>(`${this.baseUrl}/heroes/${hero.id}`, hero);
+    return this.http.put<Hero>(`${this.baseUrl}/cliente/modificar-cliente/${hero.id}`, hero);
   }
 
   eliminarrHero(hero: Hero): Observable<boolean> {
     if (!hero.id) throw Error('Hero id es requerido');
-    return this.http.delete(`${this.baseUrl}/heroes/${hero}`)
+    return this.http.delete(`${this.baseUrl}/cliente/${hero}`)
       .pipe(
         catchError(err => of(false)),
         map(resp => true)
