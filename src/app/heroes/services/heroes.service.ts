@@ -26,7 +26,7 @@ export class HeroesService {
   }
 
   getSuggestions(query: string): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.baseUrl}/cliente?q=${query}&_limit=6`);
+    return this.http.get<Hero[]>(`${this.baseUrl}/cliente/consultar-cliente-por-id?q=${query}&_limit=6`);
   }
 
   agregarHero(hero: Hero): Observable<Hero> {
@@ -38,16 +38,22 @@ export class HeroesService {
     return this.http.put<Hero>(`${this.baseUrl}/cliente/modificar-cliente/${hero.id}`, hero);
   }
 
-  eliminarrHero(hero: Hero): Observable<boolean> {
-    if (!hero.id) throw Error('Hero id es requerido');
-    return this.http.delete(`${this.baseUrl}/cliente/${hero}`)
+
+/*  eliminarrHero(id: number): Observable<boolean> {
+    if (!id) throw Error('Hero id es requerido');
+    return this.http.delete(`${this.baseUrl}/cliente/eliminar/${id}`)
       .pipe(
         catchError(err => of(false)),
         map(resp => true)
       )
+  } */
+
+  eliminarCliente(id: number): Observable<boolean>{
+    return this.http.delete(`${this.baseUrl}/cliente/eliminar/${id}`)
+    .pipe(
+      catchError(err => of(false)),
+      map(resp => true)
+    )
   }
-
-
-
 
 }

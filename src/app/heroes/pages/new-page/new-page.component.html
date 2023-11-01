@@ -1,7 +1,6 @@
 <h1>
-  Editar / Agregar
-  héroe
-  <small>Superman</small>
+{{currentCliente.id ? 'Editar' : 'Crear'}}
+Cliente
 </h1>
 
 <mat-divider class="mb-2"></mat-divider>
@@ -65,17 +64,6 @@
             />
           </mat-form-field>
 
-          <!-- <mat-form-field class="col-12">
-            <mat-label>Creador</mat-label>
-            <mat-select
-            formControlName="publisher"
-            required>
-              <mat-option *ngFor="let publisher of publishers"
-                [value]="publisher.id">
-                {{ publisher.desc }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
           <mat-form-field class="col-12">
             <mat-label>Imagen Alternativa</mat-label>
             <input

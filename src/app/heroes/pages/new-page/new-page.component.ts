@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { HeroesService } from '../../services/heroes.service';
 import { Hero } from '../../interfaces/hero.interface';
@@ -25,15 +26,11 @@ export class NewPageComponent implements OnInit {
     alt_img: new FormControl(''),
   });
 
-  /* public publishers = [
-    { id: 'DC Comics', desc: 'DC - Comics' },
-    { id: 'Marvel Comics', desc: 'Marvel - Comics' },
-  ]; */
-
   constructor(
     private heroesService: HeroesService,
     private activateRoute: ActivatedRoute,
     private router: Router,
+    private snackbar: MatSnackBar,
   ) { }
 
   get currentCliente(): Hero {
@@ -65,14 +62,21 @@ export class NewPageComponent implements OnInit {
     if (this.currentCliente.id) {
       this.heroesService.actualizarHero(this.currentCliente)
         .subscribe(hero => {
-          //Mostrar snackbar
+          this.showSnackbar(`${hero.nombres} Actualizado!`);
         });
       return;
     }
     this.heroesService.agregarHero(this.currentCliente)
       .subscribe(hero => {
-        //Mostrar snackbar
+        this.showSnackbar(`${hero.nombres} Creado!`);
       })
+  }
+
+  showSnackbar(mensaje: string){
+    this.snackbar.open(mensaje,'Exito',{
+      duration: 2500,
+    })
+    this.router.navigate(['/cliente'])
   }
 
 }
