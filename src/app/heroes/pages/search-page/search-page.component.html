@@ -3,12 +3,12 @@
   <h3>Buscador</h3>
 
   <mat-form-field>
-    <mat-label>Buscador de héroes</mat-label>
+    <mat-label>Buscador de Clientes</mat-label>
     <input
       type="text"
       matInput
       [formControl]="searchInput"
-      (input)="searchHero()"
+      (input)="buscarCliente()"
       [matAutocomplete]="auto"
     />
 
@@ -16,21 +16,26 @@
       #auto="matAutocomplete"
       (optionSelected)="onSelectedOption( $event )"
       >
-      <mat-option *ngFor="let hero of heroes" [value]="hero">
-        {{ hero.nombres }}
+      <mat-option *ngFor="let cliente of clientes" [value]="cliente">
+        {{ cliente.nombres }}
       </mat-option>
 
       <mat-option
-        *ngIf="heroes.length === 0 && searchInput.value && searchInput.value.length > 0"
+        *ngIf="clientes.length === 0 && searchInput.value && searchInput.value.length > 0"
         value="">
         No se encontró nada con el término {{ searchInput.value }}
       </mat-option>
     </mat-autocomplete>
-
   </mat-form-field>
+  <div class="flex justify-content-between">
+    <button (click)="onBack()" mat-flat-button color="warn">
+      Volver
+    </button>
+  </div>
 
 
-  {{ selectedHero | json }}
+  {{ selectedCliente | json }}
 
 
 </div>
+

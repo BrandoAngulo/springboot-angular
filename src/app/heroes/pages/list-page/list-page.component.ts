@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../../interfaces/hero.interface';
-import { HeroesService } from '../../services/heroes.service';
+import { Cliente } from '../../interfaces/cliente.interface';
+import { ClienteService } from '../../services/cliente.service';
 import { Router } from '@angular/router';
-import { filter, pipe, tap } from 'rxjs';
 
 @Component({
   selector: 'app-list-page',
@@ -12,27 +11,22 @@ import { filter, pipe, tap } from 'rxjs';
 })
 export class ListPageComponent implements OnInit {
 
-  public heroes: Hero[] = [];
+  public clientes: Cliente[] = [];
 
   constructor(
-    private heroesService: HeroesService,
-    private router: Router,
+    private clienteService: ClienteService,
   ) { }
 
   ngOnInit(): void {
-    this.heroesService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+    this.clienteService.getClientes()
+      .subscribe(clientes => this.clientes = clientes);
   }
 
   onDelete(id: number) {
-    this.heroesService.eliminarCliente(id)
-    .pipe(
-      filter((wasDeleted: boolean)=>wasDeleted)
-    )
-    .subscribe(() =>{
-      this.router.navigate(['/cliente']);
-    })
-
+    this.clienteService.eliminarCliente(id)
+    .subscribe()
+    //filtra por cliente cuando sea eliminado
+    this.clientes = this.clientes.filter(cliente => cliente.id !== id)
   }
 
 }

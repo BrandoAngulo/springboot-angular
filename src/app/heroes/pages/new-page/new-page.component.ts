@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { HeroesService } from '../../services/heroes.service';
-import { Hero } from '../../interfaces/hero.interface';
+import { ClienteService } from '../../services/cliente.service';
+import { Cliente } from '../../interfaces/cliente.interface';
 import { switchMap } from 'rxjs';
 
 @Component({
@@ -15,10 +15,9 @@ import { switchMap } from 'rxjs';
 })
 export class NewPageComponent implements OnInit {
 
-  public heroForm = new FormGroup({
+  public clienteForm = new FormGroup({
     id: new FormControl(),
     nombres: new FormControl('', { nonNullable: true }),
-    //publisher: new FormControl(Publisher.DCComics),
     apellidos: new FormControl(''),
     pais: new FormControl(''),
     celular: new FormControl(''),
@@ -27,49 +26,52 @@ export class NewPageComponent implements OnInit {
   });
 
   constructor(
-    private heroesService: HeroesService,
+    private clienteService: ClienteService,
     private activateRoute: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
   ) { }
 
-  get currentCliente(): Hero {
-    const hero = this.heroForm.value as Hero;
-    return hero;
+  get currentCliente(): Cliente {
+    const cliente = this.clienteForm.value as Cliente;
+    return cliente;
   }
 
   ngOnInit(): void {
     if (!this.router.url.includes('modificar-cliente')) return;
     this.activateRoute.params
       .pipe(
-        switchMap(({ id }) => this.heroesService.getHeroById(id)),
+        switchMap(({ id }) => this.clienteService.getClienteById(id)),
         )
         .subscribe(
-          hero => {
-            if (!hero) {
+          cliente => {
+            if (!cliente) {
               return this.router.navigateByUrl('/');
             }
-            this.heroForm.reset(hero);
+            this.clienteForm.reset(cliente);
             return;
           }
         )
   }
 
   onSubmit(): void {
-    /* console.log({formIsValid: this.heroForm.valid,
-      value: this.heroForm.value}) */
-     if (this.heroForm.invalid) return;
+    /* console.log({formIsValid: this.clienteForm.valid,
+      value: this.clienteForm.value}) */
+     if (this.clienteForm.invalid) return;
     if (this.currentCliente.id) {
-      this.heroesService.actualizarHero(this.currentCliente)
-        .subscribe(hero => {
-          this.showSnackbar(`${hero.nombres} Actualizado!`);
+      this.clienteService.actualizarCliente(this.currentCliente)
+        .subscribe(cliente => {
+          this.showSnackbar(`${cliente.nombres} Actualizado!`);
         });
       return;
     }
-    this.heroesService.agregarHero(this.currentCliente)
-      .subscribe(hero => {
-        this.showSnackbar(`${hero.nombres} Creado!`);
+    this.clienteService.agregarCliente(this.currentCliente)
+      .subscribe(cliente => {
+        this.showSnackbar(`${cliente.nombres} Creado!`);
       })
+  }
+  onBack(){
+    this.router.navigate(['/cliente'])
   }
 
   showSnackbar(mensaje: string){

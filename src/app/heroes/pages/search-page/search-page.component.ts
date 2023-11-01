@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
-import { Hero } from '../../interfaces/hero.interface';
-import { HeroesService } from '../../services/heroes.service';
+import { Cliente } from '../../interfaces/cliente.interface';
+import { ClienteService } from '../../services/cliente.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -14,30 +15,37 @@ import { HeroesService } from '../../services/heroes.service';
 export class SearchPageComponent {
 
   public searchInput = new FormControl('');
-  public heroes: Hero[] = [];
-  public selectedHero?: Hero;
+  public clientes: Cliente[] = [];
+  public selectedCliente?: Cliente;
 
-  constructor( private heroesService: HeroesService ){}
+  constructor(
+    private clienteService: ClienteService,
+    private router: Router,
+    ){}
 
-  searchHero() {
+  buscarCliente() {
     const value: string = this.searchInput.value || '';
 
-    this.heroesService.getSuggestions( value )
-      .subscribe( heroes => this.heroes = heroes );
+    this.clienteService.getSuggestions( value )
+      .subscribe( clientes => this.clientes = clientes );
   }
 
 
   onSelectedOption( event: MatAutocompleteSelectedEvent ): void {
     if ( !event.option.value ) {
-      this.selectedHero = undefined;
+      this.selectedCliente = undefined;
       return;
     }
 
-    const hero: Hero = event.option.value;
-    this.searchInput.setValue( hero.nombres );
+    const cliente: Cliente = event.option.value;
+    this.searchInput.setValue( cliente.nombres );
 
-    this.selectedHero = hero;
+    this.selectedCliente = cliente;
 
+  }
+
+  onBack(){
+    this.router.navigate(['/cliente'])
   }
 
 

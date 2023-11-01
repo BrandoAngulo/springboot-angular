@@ -15,17 +15,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let hero of heroes">
-        <td class="sm: col-4">{{hero.nombres}}</td>
-        <td class="sm: col-4">{{hero.apellidos}}</td>
-        <td class="sm: col-4">{{hero.cedula}}</td>
-        <td class="sm: col-4">{{hero.pais}}</td>
-        <td class="sm: col-4">{{hero.celular}}</td>
-        <td class="sm: col-4"> <button mat-button mat-raised color="primary" [routerLink]="['/cliente/modificar-cliente', hero.id ]">
+        <tr *ngFor="let cliente of clientes">
+        <td class="sm: col-4">{{cliente.nombres}}</td>
+        <td class="sm: col-4">{{cliente.apellidos}}</td>
+        <td class="sm: col-4">{{cliente.cedula}}</td>
+        <td class="sm: col-4">{{cliente.pais}}</td>
+        <td class="sm: col-4">{{cliente.celular}}</td>
+        <td class="sm: col-4"> <button mat-button mat-raised color="primary" [routerLink]="['/cliente/modificar-cliente', cliente.id ]">
             <mat-icon>edit</mat-icon>
             Editar
           </button>
-          <button (click)="onDelete(hero.id)" mat-button mat-raised color="warning">
+          <button (click)="onDelete(cliente.id)" mat-button mat-raised color="warning">
             <mat-icon>delete</mat-icon>
             Eliminar
           </button>

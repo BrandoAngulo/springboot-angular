@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Hero } from '../../interfaces/hero.interface';
+import { Cliente } from '../../interfaces/cliente.interface';
 
 @Component({
   selector: 'heroes-hero-card',
@@ -10,7 +10,7 @@ import { Hero } from '../../interfaces/hero.interface';
 export class CardComponent implements OnInit {
 
   @Input()
-  public hero!: Hero;
+  public hero!: Cliente;
 
 
   ngOnInit(): void {

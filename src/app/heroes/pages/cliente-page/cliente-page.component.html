@@ -8,17 +8,17 @@
 </ng-template>
 
 
-<div *ngIf="hero; else divLoading" class="grid p-2">
+<div *ngIf="cliente; else divLoading" class="grid p-2">
 
   <mat-card class="col-12 sm:col-6">
 
     <mat-card-header>
-      <mat-card-title>{{ hero.apellidos }}</mat-card-title>
-      <mat-card-subtitle>{{ hero.nombres }}</mat-card-subtitle>
+      <mat-card-title>{{ cliente.apellidos }}</mat-card-title>
+      <mat-card-subtitle>{{ cliente.nombres }}</mat-card-subtitle>
     </mat-card-header>
 
 
-    <img [src]="hero | heroImage" [alt]="hero.nombres" mat-card-image  />
+    <img [src]="cliente | clienteImage" [alt]="cliente.nombres" mat-card-image  />
 
   </mat-card>
 
@@ -26,14 +26,14 @@
 
     <mat-card-header>
       <mat-card-title>Información</mat-card-title>
-      <mat-card-subtitle>{{ hero.nombres }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ cliente.nombres }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <mat-list>
-        <mat-list-item>{{ hero.pais }}</mat-list-item>
-        <mat-list-item>{{ hero.cedula}}</mat-list-item>
-        <mat-list-item>{{ hero.apellidos }}</mat-list-item>
+        <mat-list-item>{{ cliente.pais }}</mat-list-item>
+        <mat-list-item>{{ cliente.cedula}}</mat-list-item>
+        <mat-list-item>{{ cliente.apellidos }}</mat-list-item>
       </mat-list>
 
       <button

@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'cliente',
-    loadChildren: () => import('./heroes/heroes.module').then( m => m.HeroesModule ),
+    loadChildren: () => import('./heroes/cliente.module').then( m => m.HeroesModule ),
   },
   {
     path: '404',

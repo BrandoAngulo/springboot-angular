@@ -1,6 +1,6 @@
 <h1>
-{{currentCliente.id ? 'Editar' : 'Crear'}}
-Cliente
+  {{currentCliente.id ? 'Editar' : 'Crear'}}
+  Cliente
 </h1>
 
 <mat-divider class="mb-2"></mat-divider>
@@ -11,82 +11,46 @@ Cliente
     <mat-card>
       <mat-card-content>
 
-        <form class="grid" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+        <form class="grid" [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
 
           <mat-form-field class="col-12 sm:col-6">
             <mat-label>Nombre</mat-label>
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="nombres"
-            />
+            <input matInput type="text" required formControlName="nombres" />
           </mat-form-field>
 
           <mat-form-field class="col-12 sm:col-6">
             <mat-label>Apellido</mat-label>
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="apellidos"
-            />
+            <input matInput type="text" required formControlName="apellidos" />
           </mat-form-field>
 
 
           <mat-form-field class="col-12">
             <mat-label>Pais</mat-label>
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="pais"
-            />
+            <input matInput type="text" required formControlName="pais" />
           </mat-form-field>
 
           <mat-form-field class="col-12">
             <mat-label>Celular</mat-label>
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="celular"
-            />
+            <input matInput type="text" required formControlName="celular" />
           </mat-form-field>
 
           <mat-form-field class="col-12">
             <mat-label>Cedula</mat-label>
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="cedula"
-            />
+            <input matInput type="text" required formControlName="cedula" />
           </mat-form-field>
 
           <mat-form-field class="col-12">
             <mat-label>Imagen Alternativa</mat-label>
-            <input
-              matInput
-              type="text"
-              formControlName="alt_img"
-            />
+            <input matInput type="text" formControlName="alt_img" />
           </mat-form-field>
         </form>
 
         <div class="flex justify-content-between">
-          <button
-            mat-flat-button
-            color="warn"
-          >
-            Borrar
+          <button (click)="onBack()" mat-flat-button color="warn">
+            Volver
           </button>
 
-          <button
-            mat-flat-button
-            color="primary"
-            (click)="onSubmit()"
-          >
+          <button mat-flat-button color="primary" (click)="onSubmit()">
             <mat-icon>save</mat-icon>
             Guardar
           </button>
@@ -94,13 +58,5 @@ Cliente
 
       </mat-card-content>
     </mat-card>
-  </div>
-
-  <div class="col-12 sm:col-6">
-
-    <mat-card>
-      <img [src]="currentCliente | heroImage" alt="imagen del héroe" mat-card-image>
-    </mat-card>
-
   </div>
 </div>
